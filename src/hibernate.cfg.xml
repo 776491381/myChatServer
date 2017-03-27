@@ -4,8 +4,11 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url"/>
-        <property name="connection.driver_class"/>
+        <property name="connection.url">jdbc:mysql://localhost:3306/ChatData</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <mapping class="cn.fyypumpkin.entity.ChatHistoryEntity"/>
+        <mapping class="cn.fyypumpkin.entity.FriendsEntity"/>
+        <mapping class="cn.fyypumpkin.entity.UsersEntity"/>
         <!-- <property name="connection.username"/> -->
         <!-- <property name="connection.password"/> -->
 
