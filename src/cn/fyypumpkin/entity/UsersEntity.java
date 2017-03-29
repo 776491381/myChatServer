@@ -2,6 +2,7 @@ package cn.fyypumpkin.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 /**
  * Created by fyy on 3/27/17.
@@ -9,9 +10,41 @@ import java.sql.Date;
 @Entity
 @Table(name = "Users", schema = "ChatData", catalog = "")
 public class UsersEntity {
+
+
     private String username;
     private String passwd;
     private Date regtime;
+    private List<FriendsEntity> friends;
+    private List<ChatHistoryEntity> chatHistory;
+
+    public UsersEntity() {
+    }
+
+    public UsersEntity(String username, String passwd, Date regtime, List<FriendsEntity> friends, List<ChatHistoryEntity> chatHistory) {
+        this.username = username;
+        this.passwd = passwd;
+        this.regtime = regtime;
+        this.friends = friends;
+        this.chatHistory = chatHistory;
+    }
+
+    public List<ChatHistoryEntity> getChatHistory() {
+
+        return chatHistory;
+    }
+
+    public void setChatHistory(List<ChatHistoryEntity> chatHistory) {
+        this.chatHistory = chatHistory;
+    }
+
+    public List<FriendsEntity> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<FriendsEntity> friends) {
+        this.friends = friends;
+    }
 
     @Id
     @Column(name = "username")

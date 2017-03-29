@@ -6,13 +6,25 @@
     <session-factory>
         <property name="connection.url">jdbc:mysql://localhost:3306/ChatData</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">123456</property>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="format_sql">true</property>
+        <property name="show_sql">true</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.current_session_context_class">thread</property>
         <mapping class="cn.fyypumpkin.entity.ChatHistoryEntity"/>
+        <mapping resource="cn/fyypumpkin/entity/ChatHistoryEntity.hbm.xml"/>
         <mapping class="cn.fyypumpkin.entity.FriendsEntity"/>
+        <mapping resource="cn/fyypumpkin/entity/FriendsEntity.hbm.xml"/>
         <mapping class="cn.fyypumpkin.entity.UsersEntity"/>
-        <!-- <property name="connection.username"/> -->
-        <!-- <property name="connection.password"/> -->
+        <mapping resource="cn/fyypumpkin/entity/UsersEntity.hbm.xml"/>
 
-        <!-- DB schema will be updated if needed -->
-        <!-- <property name="hbm2ddl.auto">update</property> -->
+
+
+
+
     </session-factory>
+
+
 </hibernate-configuration>

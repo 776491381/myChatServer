@@ -8,8 +8,17 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Friends", schema = "ChatData", catalog = "")
 public class FriendsEntity {
+
     private String username;
     private String friendname;
+
+    public FriendsEntity(String username, String friendname) {
+        this.username = username;
+        this.friendname = friendname;
+    }
+
+    public FriendsEntity() {
+    }
 
     @Id
     @Column(name = "username")

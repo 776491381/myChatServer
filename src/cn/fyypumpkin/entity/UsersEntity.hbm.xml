@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 9, 2006 6:27:53 PM by Hibernate Tools 3.2.0.beta7 -->
+<hibernate-mapping>
+
+    <class name="cn.fyypumpkin.entity.UsersEntity" table="Users">
+
+        <id name="username" type="java.lang.String" column="username"/>
+        <property name="passwd" type="java.lang.String" column="passwd"/>
+        <property name="regtime" type="java.util.Date" column="regtime"/>
+
+        <set name="friends" table="Friends">
+
+            <key column="username"/>
+            <one-to-many class="cn.fyypumpkin.entity.FriendsEntity"/>
+
+        </set>
+
+        <set name="chatHistory" table="ChatHistory">
+            <key>
+                <column name="username"/>
+            </key>
+
+            <one-to-many class="cn.fyypumpkin.entity.ChatHistoryEntity"/>
+        </set>
+
+    </class>
+</hibernate-mapping>

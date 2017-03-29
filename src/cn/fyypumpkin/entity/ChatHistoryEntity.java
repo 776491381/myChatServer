@@ -14,6 +14,16 @@ public class ChatHistoryEntity {
     private Timestamp msgtime;
     private String friendname;
 
+    public ChatHistoryEntity(String username, String message, Timestamp msgtime, String friendname) {
+        this.username = username;
+        this.message = message;
+        this.msgtime = msgtime;
+        this.friendname = friendname;
+    }
+
+    public ChatHistoryEntity() {
+    }
+
     @Id
     @Column(name = "username")
     public String getUsername() {

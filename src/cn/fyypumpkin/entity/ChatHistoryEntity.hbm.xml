@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 9, 2006 6:27:53 PM by Hibernate Tools 3.2.0.beta7 -->
+<hibernate-mapping>
+
+    <class name = "cn.fyypumpkin.entity.ChatHistoryEntity" table="ChatHistory">
+
+        <id name="username" column="username" type="java.lang.String"/>
+        <property name="message" column="message" type="java.lang.String"/>
+        <property name="msgtime" column="msgtime" type="java.util.Date"/>
+        <property name="friendname" column="friendname" type="java.lang.String"/>
+
+
+    </class>
+
+
+
+</hibernate-mapping>
