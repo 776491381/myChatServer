@@ -1,6 +1,8 @@
 package cn.fyypumpkin.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -8,14 +10,14 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "ChatHistory", schema = "ChatData", catalog = "")
-public class ChatHistoryEntity {
-    private String username;
+public class ChatHistoryEntity implements Serializable{
+    private String cid;
     private String message;
-    private Timestamp msgtime;
+    private Date msgtime;
     private String friendname;
+    private String username;
 
-    public ChatHistoryEntity(String username, String message, Timestamp msgtime, String friendname) {
-        this.username = username;
+    public ChatHistoryEntity(String message, Date msgtime, String friendname) {
         this.message = message;
         this.msgtime = msgtime;
         this.friendname = friendname;
@@ -24,14 +26,23 @@ public class ChatHistoryEntity {
     public ChatHistoryEntity() {
     }
 
-    @Id
-    @Column(name = "username")
+
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Id
+    @Column(name = "cid")
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
     }
 
     @Basic
@@ -46,11 +57,11 @@ public class ChatHistoryEntity {
 
     @Basic
     @Column(name = "msgtime")
-    public Timestamp getMsgtime() {
+    public Date getMsgtime() {
         return msgtime;
     }
 
-    public void setMsgtime(Timestamp msgtime) {
+    public void setMsgtime(Date msgtime) {
         this.msgtime = msgtime;
     }
 
@@ -71,7 +82,7 @@ public class ChatHistoryEntity {
 
         ChatHistoryEntity that = (ChatHistoryEntity) o;
 
-        if (username != null ? !username.equals(that.username) : that.username != null) return false;
+        if (cid != null ? !cid.equals(that.cid) : that.cid != null) return false;
         if (message != null ? !message.equals(that.message) : that.message != null) return false;
         if (msgtime != null ? !msgtime.equals(that.msgtime) : that.msgtime != null) return false;
         if (friendname != null ? !friendname.equals(that.friendname) : that.friendname != null) return false;
@@ -81,7 +92,7 @@ public class ChatHistoryEntity {
 
     @Override
     public int hashCode() {
-        int result = username != null ? username.hashCode() : 0;
+        int result = cid != null ? cid.hashCode() : 0;
         result = 31 * result + (message != null ? message.hashCode() : 0);
         result = 31 * result + (msgtime != null ? msgtime.hashCode() : 0);
         result = 31 * result + (friendname != null ? friendname.hashCode() : 0);

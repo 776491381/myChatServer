@@ -13,67 +13,81 @@
     <table id="7" parent="2" name="ChatHistory"/>
     <table id="8" parent="2" name="Friends"/>
     <table id="9" parent="2" name="Users"/>
-    <column id="10" parent="7" name="username">
-      <Position>1</Position>
-      <DataType>varchar(10)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="11" parent="7" name="message">
+    <column id="10" parent="7" name="message">
       <Position>2</Position>
       <DataType>varchar(100)|0</DataType>
     </column>
-    <column id="12" parent="7" name="msgtime">
+    <column id="11" parent="7" name="msgtime">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="13" parent="7" name="friendname">
+    <column id="12" parent="7" name="friendname">
       <Position>4</Position>
       <DataType>varchar(10)|0</DataType>
     </column>
-    <key id="14" parent="7" name="PRIMARY">
+    <column id="13" parent="7" name="cid">
+      <Position>1</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="14" parent="7" name="username">
+      <Position>5</Position>
+      <DataType>varchar(10)|0</DataType>
+    </column>
+    <index id="15" parent="7" name="ChatHistory_fk">
       <ColNames>username</ColNames>
+    </index>
+    <key id="16" parent="7" name="PRIMARY">
+      <ColNames>cid</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="15" parent="7" name="fk_ChatHistory_username">
+    <foreign-key id="17" parent="7" name="ChatHistory_fk">
       <ColNames>username</ColNames>
       <RefSchemaName>chatdata</RefSchemaName>
       <RefTableName>Users</RefTableName>
       <RefColNames>username</RefColNames>
     </foreign-key>
-    <column id="16" parent="8" name="username">
-      <Position>1</Position>
-      <DataType>varchar(10)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="17" parent="8" name="friendname">
+    <column id="18" parent="8" name="friendname">
       <Position>2</Position>
       <DataType>varchar(10)|0</DataType>
     </column>
-    <key id="18" parent="8" name="PRIMARY">
+    <column id="19" parent="8" name="fid">
+      <Position>1</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="20" parent="8" name="username">
+      <Position>3</Position>
+      <DataType>varchar(10)|0</DataType>
+    </column>
+    <index id="21" parent="8" name="Friends_fk">
       <ColNames>username</ColNames>
+    </index>
+    <key id="22" parent="8" name="PRIMARY">
+      <ColNames>fid</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="19" parent="8" name="fk_Friends_username">
+    <foreign-key id="23" parent="8" name="Friends_fk">
       <ColNames>username</ColNames>
       <RefSchemaName>chatdata</RefSchemaName>
       <RefTableName>Users</RefTableName>
       <RefColNames>username</RefColNames>
     </foreign-key>
-    <column id="20" parent="9" name="username">
+    <column id="24" parent="9" name="username">
       <Position>1</Position>
       <DataType>varchar(10)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="21" parent="9" name="passwd">
+    <column id="25" parent="9" name="passwd">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="22" parent="9" name="regtime">
+    <column id="26" parent="9" name="regtime">
       <Position>3</Position>
       <DataType>date|0</DataType>
     </column>
-    <key id="23" parent="9" name="PRIMARY">
+    <key id="27" parent="9" name="PRIMARY">
       <ColNames>username</ColNames>
       <Primary>1</Primary>
     </key>

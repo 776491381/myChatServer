@@ -1,97 +1,104 @@
 package cn.fyypumpkin.chatserver;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.oracle.tools.packager.Log;
 import org.json.*;
 
-/**
- * Created by fyy on 3/28/17.
- */
+
 public class SocketThread extends Thread {
-    private Socket socket = null;
+    private static Socket socket = null;
+    private DataInputStream inputStream;
+    private DataOutputStream outputStream;
+    private String strInputstream;
 
     public SocketThread(Socket socket) {
-        this.socket = socket;
+        SocketThread.socket = socket;
+        System.out.println("Server has start");
+        System.out.println(socket.getInetAddress());
+        inputStream = SocketUtils.getInStream(socket);
+        outputStream = SocketUtils.getOutStream(socket);
     }
 
     @Override
     public void run() {
-        try {
-            System.out.println("Server has start");
-            DataInputStream inputStream = null;
-            DataOutputStream outputStream = null;
-            String strInputstream = "";
-            inputStream = SocketUtils.getInStream(socket);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] by = new byte[2048];
-            int n;
-            while ((n = inputStream.read(by)) != -1) {
-                baos.write(by, 0, n);
+            try {
+
+                strInputstream = inputStream.readUTF();
+                System.out.println("接受到的数据长度为：" + strInputstream);
+                JSONObject json = new JSONObject(strInputstream);
+                String items = (String) json.get("items");
+//                socket.shutdownInput();
+
+                switch (items) {
+                    case "reg":
+                        String isreged = SocketUtils.reg((String) json.get("username"), (String) json.get("passwd"));
+                        Map<String, String> map = new HashMap<>();
+                        if (isreged.equals("logsuccess")) {
+                            map.put("items", "isreg");
+                            map.put("isreg", "success");
+                            System.out.println("注册成功");
+                        } else {
+                            map.put("items", "isreg");
+                            map.put("isreg", "failed");
+                            map.put("tips", "用户已存在");
+                            System.out.println("用户已存在");
+                        }
+
+                        String reg = SocketUtils.jsonToString(map);
+                        outputStream.writeUTF(reg);
+                        outputStream.flush();
+//                    outputStream.close();
+//                        socket.shutdownOutput();
+                        break;
+                    case "addfriend":
+                        ;
+                        break;
+                    case "message":
+                        ;
+                        break;
+                    case "login":
+                        String islog = SocketUtils.login((String) json.get("username"), (String) json.get("passwd"));
+                        Map<String, String> logmap = new HashMap<>();
+                        if (islog.equals("logsuccess")) {
+                            logmap.put("items", "islog");
+                            logmap.put("islog", "success");
+                            logmap.put("tips", "登陆成功");
+                        } else {
+                            logmap.put("items", "islog");
+                            logmap.put("islog", "failed");
+                            logmap.put("tips", "登录失败");
+                        }
+                        String log = SocketUtils.jsonToString(logmap);
+                        outputStream.writeUTF(log);
+                        outputStream.flush();
+//                    outputStream.close();
+//                        socket.shutdownOutput();
+
+
+                        break;
+                    default:
+                        ;
+                        break;
+                }
+
+
+            } catch (IOException e) {
+                System.out.println("IO Error " + e.getMessage());
+                e.printStackTrace();
+
+            } catch (JSONException e) {
+                System.out.println("json Error " + e.getMessage());
+                e.printStackTrace();
+
+            } finally {
+
             }
-            strInputstream = new String(baos.toByteArray());
-            System.out.println("接受到的数据长度为：" + strInputstream);
-            socket.shutdownInput();
-//                inputStream.close();  //这样写socket也会关闭
-            baos.close();
 
-            JSONObject json = new JSONObject(strInputstream);
-            String items = (String) json.get("items");
-            System.out.println(items);
-
-            switch (items) {
-                case "reg":
-                    boolean isreged = SocketUtils.reg((String) json.get("username"), (String) json.get("passwd"));
-                    outputStream = SocketUtils.getOutStream(socket);
-                    Map<String, String> map = new HashMap<String, String>();
-                    if (isreged == true) {
-                        map.put("isreged", "success");
-                        System.out.println("注册完成");
-                    }else{
-                        map.put("isreged","failed");
-                        System.out.println("注册失败");
-                    }
-
-                    String reg = SocketUtils.jsonToString(map);
-                    outputStream.writeUTF(reg);
-                    outputStream.flush();
-                    outputStream.close();
-                    break;
-                case "addfriend":
-                    ;
-                    break;
-                case "message":
-                    ;
-                    break;
-                case "login":
-                    ;
-                    break;
-                default:
-                    ;
-                    break;
-            }
-
-
-        } catch (IOException e) {
-            System.out.println("IO Error " + e.getMessage());
-//        e.printStackTrace();
-
-        } catch (JSONException e) {
-            System.out.println("json Error " + e.getMessage());
-//        e.printStackTrace();
-
-        } finally {
 
         }
-
-
-    }
 
 
 }

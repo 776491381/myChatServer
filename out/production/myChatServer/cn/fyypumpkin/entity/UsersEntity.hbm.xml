@@ -8,16 +8,16 @@
 
         <id name="username" type="java.lang.String" column="username"/>
         <property name="passwd" type="java.lang.String" column="passwd"/>
-        <property name="regtime" type="java.util.Date" column="regtime"/>
+        <property name="regtime" type="java.sql.Date" column="regtime"/>
 
         <set name="friends" table="Friends">
 
-            <key column="username"/>
+            <key column="fid"/>
             <one-to-many class="cn.fyypumpkin.entity.FriendsEntity"/>
 
         </set>
 
-        <set name="chatHistory" table="ChatHistory">
+        <set name="chatHistory" table="chathistory">
             <key>
                 <column name="username"/>
             </key>

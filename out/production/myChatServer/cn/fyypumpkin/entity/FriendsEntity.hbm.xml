@@ -6,11 +6,12 @@
 
 
     <class name="cn.fyypumpkin.entity.FriendsEntity" table="Friends">
-        <id name = "username" column="username" type="java.lang.String"/>
-        <property name="friendname" column="friendname" type="java.lang.String"/>
+        <id name="friendname" column="friendname" type="java.lang.String"/>
+        <property name = "fid" column="fid" type="java.lang.String"/>
     </class>
 
 
+    
 
 
 </hibernate-mapping>

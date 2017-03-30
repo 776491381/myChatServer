@@ -1,27 +1,29 @@
 package cn.fyypumpkin.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by fyy on 3/27/17.
  */
 @Entity
 @Table(name = "Users", schema = "ChatData", catalog = "")
-public class UsersEntity {
+public class UsersEntity implements Serializable{
 
 
     private String username;
     private String passwd;
     private Date regtime;
-    private List<FriendsEntity> friends;
-    private List<ChatHistoryEntity> chatHistory;
+    private Set<FriendsEntity> friends;
+    private Set<ChatHistoryEntity> chatHistory;
 
     public UsersEntity() {
     }
 
-    public UsersEntity(String username, String passwd, Date regtime, List<FriendsEntity> friends, List<ChatHistoryEntity> chatHistory) {
+    public UsersEntity(String username, String passwd, Date regtime, Set<FriendsEntity> friends, Set<ChatHistoryEntity> chatHistory) {
         this.username = username;
         this.passwd = passwd;
         this.regtime = regtime;
@@ -29,20 +31,20 @@ public class UsersEntity {
         this.chatHistory = chatHistory;
     }
 
-    public List<ChatHistoryEntity> getChatHistory() {
+    public Set<ChatHistoryEntity> getChatHistory() {
 
         return chatHistory;
     }
 
-    public void setChatHistory(List<ChatHistoryEntity> chatHistory) {
+    public void setChatHistory(Set<ChatHistoryEntity> chatHistory) {
         this.chatHistory = chatHistory;
     }
 
-    public List<FriendsEntity> getFriends() {
+    public Set<FriendsEntity> getFriends() {
         return friends;
     }
 
-    public void setFriends(List<FriendsEntity> friends) {
+    public void setFriends(Set<FriendsEntity> friends) {
         this.friends = friends;
     }
 

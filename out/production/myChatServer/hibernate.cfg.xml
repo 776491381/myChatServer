@@ -13,16 +13,6 @@
         <property name="show_sql">true</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.current_session_context_class">thread</property>
-        <!--<mapping class="cn.fyypumpkin.entity.ChatHistoryEntity"/>-->
-        <!--<mapping class="cn.fyypumpkin.entity.FriendsEntity"/>-->
-        <!--<mapping class="cn.fyypumpkin.entity.UsersEntity"/>-->
-        <!-- <property name="connection.username"/> -->
-        <!-- <property name="connection.password"/> -->
-
-        <!-- DB schema will be updated if needed -->
-        <!-- <property name="hbm2ddl.auto">update</property> -->
-
-
 
         <mapping class="cn.fyypumpkin.entity.ChatHistoryEntity"/>
         <mapping resource="cn/fyypumpkin/entity/ChatHistoryEntity.hbm.xml"/>

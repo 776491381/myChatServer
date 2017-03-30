@@ -6,6 +6,8 @@ package cn.fyypumpkin.chatserver;
 public class Test {
 
     public static void main(String[] args) {
-        SocketUtils.reg("111","222");
+        SocketUtils.reg("22","222");
+//        SocketUtils.saveMessage("11","hello","22");
+
     }
 }

@@ -1,80 +1,108 @@
 package cn.fyypumpkin.chatserver;
 
+import cn.fyypumpkin.entity.ChatHistoryEntity;
 import cn.fyypumpkin.entity.UsersEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.json.JSONObject;
-
-import javax.xml.crypto.Data;
 import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 
-/**
- * Created by fyy on 3/28/17.
- */
 public class SocketUtils {
 
 //    private static Socket socket;
 
 
-    public  Socket getSocket(int port){
+//    private static Socket getSocket(int port) {
+//
+//        try {
+//            ServerSocket serverSocket = new ServerSocket(port);
+//            return serverSocket.accept();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
+//
+//
+//    public static void startThread(int port) {
+//        SocketThread socketThread = new SocketThread(getSocket(port));
+//        socketThread.start();
+//    }
 
-        try {
-            ServerSocket serverSocket = new ServerSocket(port);
-            return serverSocket.accept();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+
+    public static String login(String username, String passwd, Session session) {
+        String hql = "from UsersEntity where username ="+"\'"+username+"\'"+" and passwd = "+"\'"+passwd+"\'";
+        Object result=session.createQuery(hql).uniqueResult();
+        if(result!=null) {
+            return "logsuccess";
         }
+        return "logfailed";
     }
 
 
-    public  void startThread(int port){
-        SocketThread socketThread = new SocketThread(getSocket(port));
-        socketThread.start();
+    public static String login(String username, String passwd) {
+        Session session = HibernateUtils.getSession();
+        String hql = "from UsersEntity where username ="+"\'"+username+"\'"+" and passwd = "+"\'"+passwd+"\'";
+        Object result=session.createQuery(hql).uniqueResult();
+        if(result!=null) {
+            return "logsuccess";
+        }
+        return "logfailed";
     }
 
-
-
-    public static void login(String username , String passwd){
-
-
-
-
-
-
-    }
-
-    public static boolean reg(String username , String passwd){
+    public static String reg(String username, String passwd) {
 
 
         Session session = HibernateUtils.getSession();
-        if(session.get(UsersEntity.class , username) == null){
+        java.sql.Date now = getDate();
+        if ( session.get(UsersEntity.class, username) == null) {
             UsersEntity user = new UsersEntity();
-            java.sql.Date now = getDate();
             user.setRegtime(now);
             user.setUsername(username);
             user.setPasswd(passwd);
             session.save(user);
             Transaction tx = session.beginTransaction();
             tx.commit();
-            HibernateUtils.closesession(session);
-            login(username,passwd);
-            return true;
+            return login(username, passwd, session);
 
+        } else {
+            System.out.println("false");
+            return "failed";
         }
-            return false;
     }
 
 
-    public static java.sql.Date getDate(){
+    public static void saveMessage(String username , String message ,String friendname){
+        Session session = HibernateUtils.getSession();
+        ChatHistoryEntity chatHistoryEntity = new ChatHistoryEntity(message,getDate(),friendname);
+        chatHistoryEntity.setCid("112qwsdfgbhvnjutiyokgmjivughfder");
+        UsersEntity usersEntity = (UsersEntity) session.get(UsersEntity.class,username);
+        usersEntity.getChatHistory().add(chatHistoryEntity);
+        session.save(chatHistoryEntity);
+        session.save(usersEntity);
+        Transaction tx = session.beginTransaction();
+        tx.commit();
+    }
+
+    public static void sendMessage(String message , Socket socket){
+
+
+
+
+
+    }
+
+
+
+
+    public static java.sql.Date getDate() {
 
         java.util.Date nDate = new java.util.Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -85,7 +113,7 @@ public class SocketUtils {
     }
 
 
-    public static DataOutputStream getOutStream(Socket socket){
+    public static DataOutputStream getOutStream(Socket socket) {
 
 
         try {
@@ -97,9 +125,10 @@ public class SocketUtils {
     }
 
 
-    public static DataInputStream getInStream(Socket socket){
+    public static DataInputStream getInStream(Socket socket) {
 
         try {
+
             return new DataInputStream(socket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
@@ -108,16 +137,13 @@ public class SocketUtils {
 
     }
 
-    public static String jsonToString(Map map){
+    public static String jsonToString(Map map) {
 
         JSONObject json = new JSONObject(map);
         return json.toString();
 
 
     }
-
-
-
 
 
 }

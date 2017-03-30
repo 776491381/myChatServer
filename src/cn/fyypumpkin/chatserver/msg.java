@@ -14,6 +14,7 @@ public class msg {
     private Date date;
     private String friendname;
 
+
     public String getPasswd() {
         return passwd;
     }

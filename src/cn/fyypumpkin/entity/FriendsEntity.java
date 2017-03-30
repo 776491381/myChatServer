@@ -1,19 +1,20 @@
 package cn.fyypumpkin.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by fyy on 3/27/17.
  */
 @Entity
 @Table(name = "Friends", schema = "ChatData", catalog = "")
-public class FriendsEntity {
+public class FriendsEntity implements Serializable{
 
-    private String username;
+    private String fid;
     private String friendname;
 
-    public FriendsEntity(String username, String friendname) {
-        this.username = username;
+    public FriendsEntity(String fid, String friendname) {
+        this.fid = fid;
         this.friendname = friendname;
     }
 
@@ -21,14 +22,17 @@ public class FriendsEntity {
     }
 
     @Id
-    @Column(name = "username")
-    public String getUsername() {
-        return username;
+    @Column(name = "fid")
+    public String getFid() {
+        return fid;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setFid(String fid) {
+        this.fid = fid;
     }
+
+
+
 
     @Basic
     @Column(name = "friendname")
@@ -47,7 +51,7 @@ public class FriendsEntity {
 
         FriendsEntity that = (FriendsEntity) o;
 
-        if (username != null ? !username.equals(that.username) : that.username != null) return false;
+        if (fid != null ? !fid.equals(that.fid) : that.fid != null) return false;
         if (friendname != null ? !friendname.equals(that.friendname) : that.friendname != null) return false;
 
         return true;
@@ -55,7 +59,7 @@ public class FriendsEntity {
 
     @Override
     public int hashCode() {
-        int result = username != null ? username.hashCode() : 0;
+        int result = fid != null ? fid.hashCode() : 0;
         result = 31 * result + (friendname != null ? friendname.hashCode() : 0);
         return result;
     }

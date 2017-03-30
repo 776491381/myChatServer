@@ -6,9 +6,11 @@
 
     <class name = "cn.fyypumpkin.entity.ChatHistoryEntity" table="ChatHistory">
 
-        <id name="username" column="username" type="java.lang.String"/>
+        <id name="cid" column="cid" type="java.lang.String">
+            <generator class="uuid"></generator>
+        </id>
         <property name="message" column="message" type="java.lang.String"/>
-        <property name="msgtime" column="msgtime" type="java.util.Date"/>
+        <property name="msgtime" column="msgtime" type="java.sql.Date"/>
         <property name="friendname" column="friendname" type="java.lang.String"/>
 
 
