@@ -7,8 +7,9 @@ import cn.fyypumpkin.chatserver.SocketUtils;
  */
 public class TestFunction {
     public static void main(String[] args) {
-        SocketUtils.setLogusers("222");
-        SocketUtils.displayLogusers();
+        SocketUtils.addFriend("111","222");
+//        SocketUtils.setLogusers("222");
+//        SocketUtils.displayLogusers();
     }
 
 }

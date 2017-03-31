@@ -12,7 +12,7 @@
 
         <set name="friends" table="Friends">
 
-            <key column="fid"/>
+            <key column="username"/>
             <one-to-many class="cn.fyypumpkin.entity.FriendsEntity"/>
 
         </set>

@@ -12,6 +12,15 @@ public class FriendsEntity implements Serializable{
 
     private String fid;
     private String friendname;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public FriendsEntity(String fid, String friendname) {
         this.fid = fid;

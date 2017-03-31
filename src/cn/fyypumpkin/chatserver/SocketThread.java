@@ -57,6 +57,7 @@ public class SocketThread extends Thread {
 //                        socket.shutdownOutput();
                         break;
                     case "addfriend":
+
                         ;
                         break;
                     case "message":

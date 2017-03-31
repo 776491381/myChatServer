@@ -1,6 +1,7 @@
 package cn.fyypumpkin.chatserver;
 
 import cn.fyypumpkin.entity.ChatHistoryEntity;
+import cn.fyypumpkin.entity.FriendsEntity;
 import cn.fyypumpkin.entity.LogUserEntity;
 import cn.fyypumpkin.entity.UsersEntity;
 import org.hibernate.Session;
@@ -23,21 +24,23 @@ import java.util.Map;
 
 public class SocketUtils {
 
-
-    private static String login(String username, String passwd, Session session) {
-        String hql = "from UsersEntity where username =" + "\'" + username + "\'" + " and passwd = " + "\'" + passwd + "\'";
-        Object result = session.createQuery(hql).uniqueResult();
-        if (result != null) {
-            return "logsuccess";
-        }
-        return "logfailed";
-    }
+//
+//    private static String login(String username, String passwd, Session session) {
+//        String hql = "from UsersEntity where username =" + "\'" + username + "\'" + " and passwd = " + "\'" + passwd + "\'";
+//        Object result = session.createQuery(hql).uniqueResult();
+//        HibernateUtils.closesession(session);
+//        if (result != null) {
+//            return "logsuccess";
+//        }
+//        return "logfailed";
+//    }
 
 
     static String login(String username, String passwd) {
         Session session = HibernateUtils.getSession();
         String hql = "from UsersEntity where username =" + "\'" + username + "\'" + " and passwd = " + "\'" + passwd + "\'";
         Object result = session.createQuery(hql).uniqueResult();
+        HibernateUtils.closesession(session);
         if (result != null) {
             return "logsuccess";
         }
@@ -57,9 +60,7 @@ public class SocketUtils {
             session.save(user);
             Transaction tx = session.beginTransaction();
             tx.commit();
-            HibernateUtils.closesession(session);
-
-            return login(username, passwd, session);
+            return login(username, passwd);
 
         } else {
             System.out.println("false");
@@ -212,6 +213,33 @@ public class SocketUtils {
 
     }
 
+    public static boolean addFriend(String friendname ,String username){
+        Session session = HibernateUtils.getSession();
+        String hql = "from UsersEntity where username = " + "\'" + friendname+"\'";
+        Object result = session.createQuery(hql).uniqueResult();
+        if(result!=null){
+            UsersEntity usersEntity = (UsersEntity) session.get(UsersEntity.class, username);
+            FriendsEntity friendsEntity = new FriendsEntity();
+            friendsEntity.setFriendname(friendname);
+            usersEntity.getFriends().add(friendsEntity);
+            session.save(friendsEntity);
+            session.save(usersEntity);
+
+            UsersEntity usersEntity2 = (UsersEntity) session.get(UsersEntity.class, friendname);
+            FriendsEntity friendsEntity2 = new FriendsEntity();
+            friendsEntity2.setFriendname(username);
+            usersEntity2.getFriends().add(friendsEntity2);
+            session.save(friendsEntity2);
+            session.save(usersEntity2);
+
+            Transaction tx = session.beginTransaction();
+            tx.commit();
+            HibernateUtils.closesession(session);
+            return true;
+        }else {
+            return false;
+        }
+    }
 
 
 }
