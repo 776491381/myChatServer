@@ -48,7 +48,7 @@ public class SocketUtils {
 
 
         Session session = HibernateUtils.getSession();
-        java.sql.Date now = getDate();
+        java.sql.Date now = getDate("yyyy-MM-dd");
         if (session.get(UsersEntity.class, username) == null) {
             UsersEntity user = new UsersEntity();
             user.setRegtime(now);
@@ -70,7 +70,7 @@ public class SocketUtils {
 
     public static void saveMessage(String username, String message, String friendname) {
         Session session = HibernateUtils.getSession();
-        ChatHistoryEntity chatHistoryEntity = new ChatHistoryEntity(message, getDate(), friendname);
+        ChatHistoryEntity chatHistoryEntity = new ChatHistoryEntity(message, getDate("yyyy-MM-dd HH:mm:ss"), friendname);
         UsersEntity usersEntity = (UsersEntity) session.get(UsersEntity.class, username);
         usersEntity.getChatHistory().add(chatHistoryEntity);
         session.save(chatHistoryEntity);
@@ -107,16 +107,15 @@ public class SocketUtils {
 
     }
 
-    private static java.sql.Date getDate() {
+    private static java.sql.Date getDate(String pattern) {
 
         java.util.Date nDate = new java.util.Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         String sDate = sdf.format(nDate);
         java.sql.Date now = java.sql.Date.valueOf(sDate);
         return now;
 
     }
-
 
     static DataOutputStream getOutStream(Socket socket) {
 
