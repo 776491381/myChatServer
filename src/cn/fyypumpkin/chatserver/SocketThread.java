@@ -13,6 +13,9 @@ public class SocketThread extends Thread {
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
     private String strInputstream;
+    private DataInputStream inputStream2;
+    private DataOutputStream outputStream2;
+    private String strInputstream2;
 
     public SocketThread(Socket socket) {
         SocketThread.socket = socket;
@@ -27,9 +30,14 @@ public class SocketThread extends Thread {
             try {
 
                 strInputstream = inputStream.readUTF();
-                System.out.println("接受到的数据长度为：" + strInputstream);
+                System.out.println("接受到的数据长度为：" + strInputstream + "  端口号： "+socket.getPort());
                 JSONObject json = new JSONObject(strInputstream);
                 String items = (String) json.get("items");
+//                if(!(ServerRun.getInstance().getClients().containsKey((String)json.get("username")))){
+//                    ServerRun.getInstance().getClients().put((String)json.get("username"),socket);
+//                    System.out.println(ServerRun.getInstance().getClients().get((String)json.get("username")));
+//                }
+                SocketUtils.setMap(ServerRun.clients,(String)json.get("username"),socket);
 //                socket.shutdownInput();
 
                 switch (items) {
@@ -57,6 +65,22 @@ public class SocketThread extends Thread {
                         ;
                         break;
                     case "message":
+                        String friendname = (String) json.get("friendname");
+                        Socket socketFriend = SocketUtils.traverseMap(ServerRun.clients,friendname);
+                        if(socket == null){
+                            System.out.println("未添加好友");
+                            break;
+                        }else{
+                            inputStream2 = SocketUtils.getInStream(socketFriend);
+                            outputStream2 = SocketUtils.getOutStream(socketFriend);
+                            String message = json.toString();
+                            outputStream2.writeUTF(message);
+                            outputStream2.flush();
+                        }
+
+
+
+
                         ;
                         break;
                     case "login":

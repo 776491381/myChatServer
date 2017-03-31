@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
 import java.util.Map;
 
 public class SocketUtils {
@@ -91,6 +92,7 @@ public class SocketUtils {
         tx.commit();
     }
 
+
     public static void sendMessage(String message , Socket socket){
 
 
@@ -145,5 +147,24 @@ public class SocketUtils {
 
     }
 
+
+    public static Socket traverseMap(Map<String, Socket> map, String friendname){
+
+        if(map!=null)
+        for (Map.Entry<String, Socket> entry : map.entrySet()) {
+            if(entry.getKey().equals(friendname)){
+                return entry.getValue();
+            }
+            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+        }
+        return null;
+    }
+
+
+    public static int setMap(Map<String, Socket> map , String username , Socket socket){
+        map.put(username,socket);
+        ServerRun.clients = map;
+        return 1;
+    }
 
 }
