@@ -57,8 +57,22 @@ public class SocketThread extends Thread {
 //                        socket.shutdownOutput();
                         break;
                     case "addfriend":
-
-                        ;
+                        Map<String, String> frinedmap = new HashMap<>();
+                        boolean isadded = SocketUtils.addFriend((String) json.get("friendname"),(String) json.get("username"));
+                        if(isadded){
+                            frinedmap.put("items", "isaddded");
+                            frinedmap.put("isadded", "success");
+                            frinedmap.put("tips","添加成功");
+                            System.out.println("添加成功");
+                        }else{
+                            frinedmap.put("items", "isaddded");
+                            frinedmap.put("isadded", "failed");
+                            frinedmap.put("tips","添加失败");
+                            System.out.println("添加失败");
+                        }
+                        String add = SocketUtils.jsonToString(frinedmap);
+                        outputStream.writeUTF(add);
+                        outputStream.flush();
                         break;
                     case "message":
                         SocketUtils.sendMessage(json);
