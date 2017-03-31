@@ -6,7 +6,9 @@
 
 
     <class name="cn.fyypumpkin.entity.FriendsEntity" table="Friends">
-        <id name="friendname" column="friendname" type="java.lang.String"/>
+        <id name="friendname" column="friendname" type="java.lang.String">
+            <generator class="uuid"/>
+        </id>
         <property name = "fid" column="fid" type="java.lang.String"/>
     </class>
 

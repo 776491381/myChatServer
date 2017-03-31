@@ -1,7 +1,8 @@
+package cn.fyypumpkin.test;
+
 import org.json.JSONObject;
 
 import java.io.*;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +25,7 @@ public class TestSend extends Thread {
         String in = scanner.next();
         while (in!= "exit") {
             String friendname = scanner.next();
+            String message = scanner.next();
             DataOutputStream outputStream = null;
 //        while(true){
             Socket socket = null;
@@ -34,12 +36,12 @@ public class TestSend extends Thread {
             }
             System.out.println("连接已经建立");
             //向服务器端发送数据
-            Map<String, String> map = new HashMap<String, String>();
+            Map<String, String> map = new HashMap<>();
 //        map.put("items", "reg");
             map.put("items", "message");
             map.put("username", in);
             map.put("passwd", "222");
-            map.put("message","hello");
+            map.put("message",message);
             map.put("friendname",friendname);
             //将json转化为String类型
             JSONObject json = new JSONObject(map);
@@ -62,6 +64,7 @@ public class TestSend extends Thread {
                 e.printStackTrace();
             }
 
+            System.out.println("等待接收消息");
             DataInputStream inputStream = null;
             String strInputstream = "";
             try {
@@ -76,17 +79,17 @@ public class TestSend extends Thread {
             }
             System.out.println("输入信息为：" + strInputstream);
 
-
-            try {
-                outputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                inputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//
+//            try {
+//                outputStream.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            try {
+//                inputStream.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
 
 
 //        }

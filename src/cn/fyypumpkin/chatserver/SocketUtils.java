@@ -1,10 +1,14 @@
 package cn.fyypumpkin.chatserver;
 
 import cn.fyypumpkin.entity.ChatHistoryEntity;
+import cn.fyypumpkin.entity.LogUserEntity;
 import cn.fyypumpkin.entity.UsersEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.type.ListType;
+import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -12,58 +16,40 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class SocketUtils {
 
-//    private static Socket socket;
 
-
-//    private static Socket getSocket(int port) {
-//
-//        try {
-//            ServerSocket serverSocket = new ServerSocket(port);
-//            return serverSocket.accept();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
-//
-//
-//    public static void startThread(int port) {
-//        SocketThread socketThread = new SocketThread(getSocket(port));
-//        socketThread.start();
-//    }
-
-
-    public static String login(String username, String passwd, Session session) {
-        String hql = "from UsersEntity where username ="+"\'"+username+"\'"+" and passwd = "+"\'"+passwd+"\'";
-        Object result=session.createQuery(hql).uniqueResult();
-        if(result!=null) {
+    private static String login(String username, String passwd, Session session) {
+        String hql = "from UsersEntity where username =" + "\'" + username + "\'" + " and passwd = " + "\'" + passwd + "\'";
+        Object result = session.createQuery(hql).uniqueResult();
+        if (result != null) {
             return "logsuccess";
         }
         return "logfailed";
     }
 
 
-    public static String login(String username, String passwd) {
+    static String login(String username, String passwd) {
         Session session = HibernateUtils.getSession();
-        String hql = "from UsersEntity where username ="+"\'"+username+"\'"+" and passwd = "+"\'"+passwd+"\'";
-        Object result=session.createQuery(hql).uniqueResult();
-        if(result!=null) {
+        String hql = "from UsersEntity where username =" + "\'" + username + "\'" + " and passwd = " + "\'" + passwd + "\'";
+        Object result = session.createQuery(hql).uniqueResult();
+        if (result != null) {
             return "logsuccess";
         }
         return "logfailed";
     }
 
-    public static String reg(String username, String passwd) {
+    static String reg(String username, String passwd) {
 
 
         Session session = HibernateUtils.getSession();
         java.sql.Date now = getDate();
-        if ( session.get(UsersEntity.class, username) == null) {
+        if (session.get(UsersEntity.class, username) == null) {
             UsersEntity user = new UsersEntity();
             user.setRegtime(now);
             user.setUsername(username);
@@ -71,6 +57,8 @@ public class SocketUtils {
             session.save(user);
             Transaction tx = session.beginTransaction();
             tx.commit();
+            HibernateUtils.closesession(session);
+
             return login(username, passwd, session);
 
         } else {
@@ -80,31 +68,46 @@ public class SocketUtils {
     }
 
 
-    public static void saveMessage(String username , String message ,String friendname){
+    public static void saveMessage(String username, String message, String friendname) {
         Session session = HibernateUtils.getSession();
-        ChatHistoryEntity chatHistoryEntity = new ChatHistoryEntity(message,getDate(),friendname);
-        chatHistoryEntity.setCid("112qwsdfgbhvnjutiyokgmjivughfder");
-        UsersEntity usersEntity = (UsersEntity) session.get(UsersEntity.class,username);
+        ChatHistoryEntity chatHistoryEntity = new ChatHistoryEntity(message, getDate(), friendname);
+        UsersEntity usersEntity = (UsersEntity) session.get(UsersEntity.class, username);
         usersEntity.getChatHistory().add(chatHistoryEntity);
         session.save(chatHistoryEntity);
         session.save(usersEntity);
         Transaction tx = session.beginTransaction();
         tx.commit();
-    }
-
-
-    public static void sendMessage(String message , Socket socket){
-
-
-
-
+        HibernateUtils.closesession(session);
 
     }
 
 
+    static void sendMessage(JSONObject json) {
 
+        String friendname = null;
+        try {
+            friendname = (String) json.get("friendname");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Socket socketFriend = SocketUtils.traverseMap(ServerRun.clients, friendname);
+        if (socketFriend == null) {
+            System.out.println("未添加好友");
+        } else {
+            DataOutputStream outputStream2 = SocketUtils.getOutStream(socketFriend);
+            String message = json.toString();
+            try {
+                assert outputStream2 != null;
+                outputStream2.writeUTF(message);
+                outputStream2.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
-    public static java.sql.Date getDate() {
+    }
+
+    private static java.sql.Date getDate() {
 
         java.util.Date nDate = new java.util.Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -115,7 +118,7 @@ public class SocketUtils {
     }
 
 
-    public static DataOutputStream getOutStream(Socket socket) {
+    static DataOutputStream getOutStream(Socket socket) {
 
 
         try {
@@ -127,7 +130,7 @@ public class SocketUtils {
     }
 
 
-    public static DataInputStream getInStream(Socket socket) {
+    static DataInputStream getInStream(Socket socket) {
 
         try {
 
@@ -139,7 +142,7 @@ public class SocketUtils {
 
     }
 
-    public static String jsonToString(Map map) {
+    static String jsonToString(Map map) {
 
         JSONObject json = new JSONObject(map);
         return json.toString();
@@ -148,23 +151,68 @@ public class SocketUtils {
     }
 
 
-    public static Socket traverseMap(Map<String, Socket> map, String friendname){
+    static Socket traverseMap(Map<String, Socket> map, String friendname) {
 
-        if(map!=null)
-        for (Map.Entry<String, Socket> entry : map.entrySet()) {
-            if(entry.getKey().equals(friendname)){
-                return entry.getValue();
+        if (map != null) {
+            for (Map.Entry<String, Socket> entry : map.entrySet()) {
+                if (entry.getKey().equals(friendname)) {
+                    return entry.getValue();
+                }
             }
-            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
         }
         return null;
     }
 
+    static void traverseMap(Map<String, Socket> map) {
+        if (map != null) {
+            for (Map.Entry<String, Socket> entry : map.entrySet()) {
+                System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+            }
+        }
+    }
 
-    public static int setMap(Map<String, Socket> map , String username , Socket socket){
-        map.put(username,socket);
+    static int setMap(Map<String, Socket> map, String username, Socket socket) {
+        map.put(username, socket);
         ServerRun.clients = map;
         return 1;
     }
+
+    public static List<LogUserEntity> displayLogusers(){
+
+        String hql = "from LogUserEntity";
+        List<LogUserEntity> list = new ArrayList();
+        Session session = HibernateUtils.getSession();
+        list = session.createQuery(hql).list();
+        for(LogUserEntity logUserEntity : list){
+            System.out.println(logUserEntity.getUsername());
+        }
+
+        return  list;
+    }
+
+     public  static void setLogusers(String username){
+
+        Session session = HibernateUtils.getSession();
+        LogUserEntity logUserEntity = new LogUserEntity();
+        logUserEntity.setUsername(username);
+        session.save(logUserEntity);
+        Transaction tx = session.beginTransaction();
+        tx.commit();
+        HibernateUtils.closesession(session);
+
+
+    }
+
+    public static void delLogusers(String username){
+        String hql = "delete from LogUserEntity where username = "+"\'"+username+"\'";
+        Session session = HibernateUtils.getSession();
+        session.createQuery(hql).executeUpdate();
+        Transaction tx = session.beginTransaction();
+        tx.commit();
+        HibernateUtils.closesession(session);
+
+    }
+
+
 
 }

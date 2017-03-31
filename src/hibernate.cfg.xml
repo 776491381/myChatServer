@@ -20,9 +20,8 @@
         <mapping resource="cn/fyypumpkin/entity/FriendsEntity.hbm.xml"/>
         <mapping class="cn.fyypumpkin.entity.UsersEntity"/>
         <mapping resource="cn/fyypumpkin/entity/UsersEntity.hbm.xml"/>
-
-
-
+        <mapping class="cn.fyypumpkin.entity.LogUserEntity"/>
+        <mapping resource="cn/fyypumpkin/entity/LogUserEntity.hbm.xml"/>
 
 
     </session-factory>
