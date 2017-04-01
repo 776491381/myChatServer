@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="myChatServer:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="87644b5e-bd8c-4910-8f7b-44c916fbab01" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/chatserver/Test.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/Test.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/chatserver/SocketThread.class" afterPath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/chatserver/SocketThread.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/chatserver/SocketUtils.class" afterPath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/chatserver/SocketUtils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/entity/FriendsEntity.class" afterPath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/entity/FriendsEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/test/TestFunction.class" afterPath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/test/TestFunction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/2c6c1fad-9081-4130-a59b-4079cdebdfe4.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/2c6c1fad-9081-4130-a59b-4079cdebdfe4.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/myChatServer_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/myChatServer_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/entity/FriendsEntity.hbm.xml" afterPath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/entity/FriendsEntity.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketThread.java" afterPath="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketUtils.java" afterPath="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/fyypumpkin/entity/FriendsEntity.hbm.xml" afterPath="$PROJECT_DIR$/src/cn/fyypumpkin/entity/FriendsEntity.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/fyypumpkin/entity/FriendsEntity.java" afterPath="$PROJECT_DIR$/src/cn/fyypumpkin/entity/FriendsEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/fyypumpkin/entity/UsersEntity.hbm.xml" afterPath="$PROJECT_DIR$/src/cn/fyypumpkin/entity/UsersEntity.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/fyypumpkin/test/TestFunction.java" afterPath="$PROJECT_DIR$/src/cn/fyypumpkin/test/TestFunction.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -106,11 +99,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SocketUtils.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SocketUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
+            <state relative-caret-position="481">
               <caret line="233" column="0" lean-forward="false" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="msg.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/msg.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="83" lean-forward="false" selection-start-line="9" selection-start-column="83" selection-end-line="9" selection-end-column="83" />
               <folding />
             </state>
           </provider>
@@ -136,6 +139,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="SocketThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="46" column="51" lean-forward="true" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="UsersEntity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/fyypumpkin/entity/UsersEntity.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -144,33 +157,6 @@
               <folding>
                 <element signature="e#983#984#0" expanded="true" />
                 <element signature="e#1029#1030#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FriendsEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/fyypumpkin/entity/FriendsEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-              <folding>
-                <element signature="e#396#397#0" expanded="true" />
-                <element signature="e#444#445#0" expanded="true" />
-                <element signature="e#484#485#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChatHistoryEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/fyypumpkin/entity/ChatHistoryEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="28" />
-              <folding>
-                <element signature="e#705#706#0" expanded="true" />
-                <element signature="e#736#737#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -198,10 +184,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestSend2.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TestSend2.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cn/fyypumpkin/test/TestSend2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="-315">
               <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -263,13 +249,13 @@
         <option value="$PROJECT_DIR$/src/cn/fyypumpkin/test/TestSend2.java" />
         <option value="$PROJECT_DIR$/src/cn/fyypumpkin/entity/LogUserEntity.hbm.xml" />
         <option value="$PROJECT_DIR$/src/hibernate.cfg.xml" />
-        <option value="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/msg.java" />
-        <option value="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketThread.java" />
         <option value="$PROJECT_DIR$/src/cn/fyypumpkin/entity/FriendsEntity.java" />
         <option value="$PROJECT_DIR$/src/cn/fyypumpkin/test/TestFunction.java" />
         <option value="$PROJECT_DIR$/src/cn/fyypumpkin/entity/FriendsEntity.hbm.xml" />
         <option value="$PROJECT_DIR$/src/cn/fyypumpkin/entity/UsersEntity.hbm.xml" />
         <option value="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketUtils.java" />
+        <option value="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/msg.java" />
+        <option value="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketThread.java" />
       </list>
     </option>
   </component>
@@ -280,8 +266,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1280" />
-    <option name="height" value="800" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -571,9 +557,9 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="JPA.DatabaseSchemaImportDialog" value="2c6c1fad-9081-4130-a59b-4079cdebdfe4" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.12773305" />
     <property name="FullScreen" value="true" />
   </component>
   <component name="RecentsManager">
@@ -582,7 +568,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TestFunction">
+  <component name="RunManager" selected="Application.TestSend2">
     <configuration default="false" name="ServerRun" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cn.fyypumpkin.chatserver.ServerRun" />
       <option name="VM_PARAMETERS" />
@@ -928,10 +914,10 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.TestFunction" />
-        <item index="1" class="java.lang.String" itemvalue="Application.TestSend2" />
-        <item index="2" class="java.lang.String" itemvalue="Application.ServerRun" />
-        <item index="3" class="java.lang.String" itemvalue="Application.TestSend" />
+        <item index="0" class="java.lang.String" itemvalue="Application.TestSend2" />
+        <item index="1" class="java.lang.String" itemvalue="Application.TestSend" />
+        <item index="2" class="java.lang.String" itemvalue="Application.TestFunction" />
+        <item index="3" class="java.lang.String" itemvalue="Application.ServerRun" />
         <item index="4" class="java.lang.String" itemvalue="Application.send" />
       </list>
     </recent_temporary>
@@ -958,15 +944,15 @@
       <workItem from="1490861757610" duration="4848000" />
       <workItem from="1490938992347" duration="1132000" />
       <workItem from="1490940159590" duration="5921000" />
-      <workItem from="1490963499586" duration="10996000" />
+      <workItem from="1490963499586" duration="13628000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52534000" />
+    <option name="totallyTimeSpent" value="55166000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="6" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -977,13 +963,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24491772" sideWeight="0.503125" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.312085" sideWeight="0.509375" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.312085" sideWeight="0.490625" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2328125" sideWeight="0.26061776" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22749273" sideWeight="0.5083333" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22749273" sideWeight="0.49166667" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12135417" sideWeight="0.25689223" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2328125" sideWeight="0.73938227" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12135417" sideWeight="0.7431078" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.121875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08125" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1384,22 +1370,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/msg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="75" lean-forward="false" selection-start-line="9" selection-start-column="75" selection-end-line="9" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/fyypumpkin/entity/FriendsEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1417,8 +1387,8 @@
         <state relative-caret-position="210">
           <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="28" />
           <folding>
-            <element signature="e#705#706#0" expanded="true" />
-            <element signature="e#736#737#0" expanded="true" />
+            <element signature="e#705#706#0" expanded="false" />
+            <element signature="e#736#737#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1435,16 +1405,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="84" column="39" lean-forward="false" selection-start-line="84" selection-start-column="39" selection-end-line="84" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/fyypumpkin/test/TestSend2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1494,11 +1454,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/msg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="83" lean-forward="false" selection-start-line="9" selection-start-column="83" selection-end-line="9" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
+        <state relative-caret-position="481">
           <caret line="233" column="0" lean-forward="false" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="46" column="51" lean-forward="true" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/fyypumpkin/test/TestSend2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-315">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1508,11 +1494,11 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>myChatServer:war exploded</last-edited>
+          <last-edited>myChatServer:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.12773305" />
                 <option value="0.5" />
               </list>
             </option>
