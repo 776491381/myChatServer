@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class msg {
 
-    private String items;       //reg addfriend message login isreged islog isadded
+    private String items;       //reg addfriend message login isreged islog isadded /logout
     private String username;
     private String passwd;
     private String message;

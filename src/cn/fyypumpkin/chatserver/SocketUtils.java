@@ -6,21 +6,15 @@ import cn.fyypumpkin.entity.LogUserEntity;
 import cn.fyypumpkin.entity.UsersEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.type.ListType;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SocketUtils {
 
@@ -36,18 +30,63 @@ public class SocketUtils {
 //    }
 
 
-    static String login(String username, String passwd) {
+    public static String login(String username, String passwd) {
         Session session = HibernateUtils.getSession();
         String hql = "from UsersEntity where username =" + "\'" + username + "\'" + " and passwd = " + "\'" + passwd + "\'";
         Object result = session.createQuery(hql).uniqueResult();
+        List<LogUserEntity> logUserEntities = session.createQuery("from LogUserEntity ").list();
         HibernateUtils.closesession(session);
         if (result != null) {
+            for(LogUserEntity logUserEntity : logUserEntities){
+                if(logUserEntity.getUsername().equals(username)){
+                    return "logsuccess";
+                }
+            }
+            setLogusers(username);
             return "logsuccess";
         }
         return "logfailed";
     }
 
-    static String reg(String username, String passwd) {
+    public static JSONObject returnfriendSocket(String username) {
+
+        Map map = new HashMap();
+        map.put("items", "friendlist");
+        Session session = HibernateUtils.getSession();
+        UsersEntity usersEntity = (UsersEntity) session.get(UsersEntity.class, username);
+        Set<FriendsEntity> friends = usersEntity.getFriends();
+        System.out.println("---------------------->username"+username);
+        System.out.println("---------------------->friends"+friends+"size"+friends.size());
+        List<LogUserEntity> logpeo = session.createQuery("from LogUserEntity").list();
+        System.out.println("---------------------->logpeo"+logpeo+"size"+logpeo.size());
+        System.out.println("---------------------->client"+ServerRun.clients+"size"+ServerRun.clients.size());
+        for (FriendsEntity friendsEntity : friends) {
+            for (LogUserEntity logUserEntity : logpeo) {
+                if (friendsEntity.getFriendname().equals(logUserEntity.getUsername())) {
+                    System.out.println("进入if");
+                    map.put("friendname", friendsEntity.getFriendname());
+//                    for(Map.Entry<String, Socket> entry : ServerRun.clients.entrySet()){
+//                        if(entry.getKey().equals(friendsEntity.getFriendname())){
+//                            map.put("socket" , entry.getValue());
+//                            break;
+//                        }
+//
+//                    }
+                    map.put(friendsEntity.getFriendname() + "ip", ServerRun.clients.get(friendsEntity.getFriendname()).getInetAddress());
+                    map.put(friendsEntity.getFriendname() + "port", ServerRun.clients.get(friendsEntity.getFriendname()).getPort());
+                }
+            }
+
+        }
+
+
+        JSONObject json = new JSONObject(map);
+
+
+        return json;
+    }
+
+    public  static String reg(String username, String passwd) {
 
 
         Session session = HibernateUtils.getSession();
@@ -83,7 +122,7 @@ public class SocketUtils {
     }
 
 
-    static void sendMessage(JSONObject json) {
+    public static void sendMessage(JSONObject json) {
 
         String friendname = null;
         try {
@@ -118,7 +157,7 @@ public class SocketUtils {
 
     }
 
-    static DataOutputStream getOutStream(Socket socket) {
+    public static DataOutputStream getOutStream(Socket socket) {
 
 
         try {
@@ -130,7 +169,7 @@ public class SocketUtils {
     }
 
 
-    static DataInputStream getInStream(Socket socket) {
+    public static DataInputStream getInStream(Socket socket) {
 
         try {
 
@@ -151,7 +190,7 @@ public class SocketUtils {
     }
 
 
-    static Socket traverseMap(Map<String, Socket> map, String friendname) {
+    public static Socket traverseMap(Map<String, Socket> map, String friendname) {
 
         if (map != null) {
             for (Map.Entry<String, Socket> entry : map.entrySet()) {
@@ -163,7 +202,7 @@ public class SocketUtils {
         return null;
     }
 
-    static void traverseMap(Map<String, Socket> map) {
+    public static void traverseMap(Map<String, Socket> map) {
         if (map != null) {
             for (Map.Entry<String, Socket> entry : map.entrySet()) {
                 System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
@@ -171,26 +210,26 @@ public class SocketUtils {
         }
     }
 
-    static int setMap(Map<String, Socket> map, String username, Socket socket) {
+    public static int setMap(Map<String, Socket> map, String username, Socket socket) {
         map.put(username, socket);
         ServerRun.clients = map;
         return 1;
     }
 
-    public static List<LogUserEntity> displayLogusers(){
+    public static List<LogUserEntity> displayLogusers() {
 
         String hql = "from LogUserEntity";
         List<LogUserEntity> list = new ArrayList();
         Session session = HibernateUtils.getSession();
         list = session.createQuery(hql).list();
-        for(LogUserEntity logUserEntity : list){
+        for (LogUserEntity logUserEntity : list) {
             System.out.println(logUserEntity.getUsername());
         }
 
-        return  list;
+        return list;
     }
 
-     public  static void setLogusers(String username){
+    public static void setLogusers(String username) {
 
         Session session = HibernateUtils.getSession();
         LogUserEntity logUserEntity = new LogUserEntity();
@@ -203,8 +242,8 @@ public class SocketUtils {
 
     }
 
-    public static void delLogusers(String username){
-        String hql = "delete from LogUserEntity where username = "+"\'"+username+"\'";
+    public static void delLogusers(String username) {
+        String hql = "delete from LogUserEntity where username = " + "\'" + username + "\'";
         Session session = HibernateUtils.getSession();
         session.createQuery(hql).executeUpdate();
         Transaction tx = session.beginTransaction();
@@ -213,11 +252,11 @@ public class SocketUtils {
 
     }
 
-    public static boolean addFriend(String friendname ,String username){
+    public static boolean addFriend(String friendname, String username) {
         Session session = HibernateUtils.getSession();
-        String hql = "from UsersEntity where username = " + "\'" + friendname+"\'";
+        String hql = "from UsersEntity where username = " + "\'" + friendname + "\'";
         Object result = session.createQuery(hql).uniqueResult();
-        if(result!=null){
+        if (result != null) {
             UsersEntity usersEntity = (UsersEntity) session.get(UsersEntity.class, username);
             FriendsEntity friendsEntity = new FriendsEntity();
             friendsEntity.setFriendname(friendname);
@@ -236,7 +275,7 @@ public class SocketUtils {
             tx.commit();
             HibernateUtils.closesession(session);
             return true;
-        }else {
+        } else {
             return false;
         }
     }

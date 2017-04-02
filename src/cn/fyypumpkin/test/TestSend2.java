@@ -109,6 +109,19 @@ public class TestSend2 extends Thread {
             }
 
             System.out.println("输入信息为：" + strInputstream);
+            String strInputstream2 = "";
+            try {
+                inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                strInputstream2 = inputStream.readUTF();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("输入信息为：" + strInputstream2);
 
 
 //            try {

@@ -30,7 +30,7 @@ public class TestSend extends Thread {
 //        while(true){
             Socket socket = null;
             try {
-                socket = new Socket("127.0.0.1", 25565);
+                socket = new Socket("123.206.101.70", 25565);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -79,6 +79,14 @@ public class TestSend extends Thread {
             }
             System.out.println("输入信息为：" + strInputstream);
 
+            String strInputstream2 = "";
+            try {
+                strInputstream2 = inputStream.readUTF();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("输入信息为：" + strInputstream2);
 //
 //            try {
 //                outputStream.close();
