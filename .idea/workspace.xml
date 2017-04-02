@@ -7,18 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87644b5e-bd8c-4910-8f7b-44c916fbab01" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/chatserver/SocketThread.class" afterPath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/chatserver/SocketThread.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/chatserver/SocketUtils.class" afterPath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/chatserver/SocketUtils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/test/TestFunction.class" afterPath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/test/TestFunction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/test/TestSend.class" afterPath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/test/TestSend.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/test/TestSend2.class" afterPath="$PROJECT_DIR$/out/production/myChatServer/cn/fyypumpkin/test/TestSend2.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/myChatServer_jar/myChatServer.jar" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketThread.java" afterPath="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketUtils.java" afterPath="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/SocketUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/msg.java" afterPath="$PROJECT_DIR$/src/cn/fyypumpkin/chatserver/msg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/fyypumpkin/test/TestFunction.java" afterPath="$PROJECT_DIR$/src/cn/fyypumpkin/test/TestFunction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/fyypumpkin/test/TestSend.java" afterPath="$PROJECT_DIR$/src/cn/fyypumpkin/test/TestSend.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/fyypumpkin/test/TestSend2.java" afterPath="$PROJECT_DIR$/src/cn/fyypumpkin/test/TestSend2.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -966,12 +956,12 @@
       <workItem from="1490938992347" duration="1132000" />
       <workItem from="1490940159590" duration="5921000" />
       <workItem from="1490963499586" duration="14618000" />
-      <workItem from="1491114902487" duration="6562000" />
+      <workItem from="1491114902487" duration="6779000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62718000" />
+    <option name="totallyTimeSpent" value="62935000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="25" y="12" width="1229" height="777" extended-state="0" />
