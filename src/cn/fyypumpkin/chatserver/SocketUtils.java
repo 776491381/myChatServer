@@ -134,8 +134,7 @@ public class SocketUtils {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Socket socketFriend = new Socket();
-        socketFriend = SocketUtils.traverseMap(ServerRun.clients, friendname);
+        Socket socketFriend = SocketUtils.traverseMap(ServerRun.clients, friendname);
         if (socketFriend == null) {
             System.out.println("未添加好友");
         } else {
@@ -221,9 +220,10 @@ public class SocketUtils {
         }
     }
 
-    public static int setMap(Map<String, Socket> map, String username, Socket socket) {
+    public static int setMap(String username, Socket socket) {
 //        map.put(username, socket);
         ServerRun.clients.put(username, socket);
+        System.out.println("Client has Put");
         return 1;
     }
 

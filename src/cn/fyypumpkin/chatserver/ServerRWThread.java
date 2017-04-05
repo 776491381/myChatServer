@@ -40,10 +40,9 @@ public class ServerRWThread extends Thread {
                 System.out.println("接受到的数据长度为：" + strInputstream + "  端口号： " + socket.getPort());
                 JSONObject json = new JSONObject(strInputstream);
                 String items = (String) json.get("items");
-                if(flag == 0) {
-                    SocketUtils.setMap(ServerRun.clients, (String) json.get("username"), socket);
-                    flag=1;
-                }
+//                if(flag == 0) {
+//                    flag=1;
+//                }
                 SocketUtils.traverseMap(ServerRun.clients);
                 switch (items) {
                     case "reg":
@@ -96,6 +95,7 @@ public class ServerRWThread extends Thread {
                             logmap.put("items", "islog");
                             logmap.put("islog", "success");
                             logmap.put("tips", "登陆成功");
+                            SocketUtils.setMap((String) json.get("username"), socket);
                             String friendSocket = SocketUtils.returnfriendSocket((String) json.get("username")).toString();
                             outputStream.writeUTF(friendSocket);
                         } else {
