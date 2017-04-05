@@ -44,7 +44,7 @@ public class ServerRun
 //                    Map.Entry<String,Socket> entry = entryIterator.next();
 //                    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
 //                }
-                count++;
+//                count++;
                 SocketThread socketThread = new SocketThread(socket);
                 socketThread.start();
             }
