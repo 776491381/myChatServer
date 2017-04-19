@@ -9,7 +9,7 @@ import java.io.IOException;
  */
 public class InputThread extends  Thread {
 
-    DataInputStream inputStream = null;
+    static DataInputStream inputStream = null;
 
     public InputThread(DataInputStream inputStream){
         this.inputStream = inputStream;

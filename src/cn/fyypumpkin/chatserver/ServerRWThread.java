@@ -120,9 +120,7 @@ public class ServerRWThread extends Thread {
                     default:
                         break;
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (JSONException | IOException e) {
                 e.printStackTrace();
             }
 

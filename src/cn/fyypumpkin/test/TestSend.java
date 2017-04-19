@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class TestSend {
 
-    private Socket socket = null;
+    private static Socket socket = null;
 
     public static void main(String[] args) throws IOException {
         TestSend testSend2 = new TestSend();

@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class OutputThread extends Thread {
 
     private DataOutputStream outputStream;
-    private String passwd, message, friendname;
+    private String passwd, message, friendname, LogOut = "in";
     private Scanner scanner = null;
 
     public OutputThread(DataOutputStream outputStream) {
@@ -32,7 +32,7 @@ public class OutputThread extends Thread {
         while (true) {
 
             Map<String, String> map = new HashMap<>();
-            System.out.println("请输入操作/reg/login/message");
+            System.out.println("请输入操作/reg/login/message/logout");
             String items = scanner.next();
             switch (items) {
                 case "reg":
@@ -61,6 +61,12 @@ public class OutputThread extends Thread {
                     friendname = scanner.next();
                     map.put("friendname", friendname);
                     break;
+                case "logout":
+                    LogOut = "out";
+                    map = new HashMap<>();
+                    map.put("item", "logout");
+                    map.put("username", in);
+                    break;
                 default:
                     break;
             }
@@ -73,6 +79,16 @@ public class OutputThread extends Thread {
                 outputStream.flush();
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+            if (LogOut.equals("out")) {
+                try {
+                    outputStream.close();
+                    InputThread.inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
             }
 
 
